@@ -1,0 +1,26 @@
+import sys
+import numpy as np 
+import pandas as pd 
+import matplotlib.pyplot as plt 
+import seaborn as sns
+ 
+from sklearn.model_selection import cross_val_score,cross_validate 
+from sklearn.model_selection import StratifiedKFold 
+from sklearn.preprocessing import MinMaxScaler 
+from xgboost import XGBClassifier
+
+df = pd.read_csv("/content/parkins.csv")
+df.head()
+df.info()
+df.shape
+df.describe()
+sns.countplot(df['status'])
+plt.show()
+plt.figure(figsize=(20,10))
+sns.heatmap(df.corr(), annot=True, fmt=".2f", linewidths="1.2") 
+plt.show()
+plt.figure(figsize = (15,10))
+sns.pairplot(df, vars=['MDVP:Fo(Hz)','MDVP:Flo(Hz)','HNR','PPE', 'spread1', 'spread2'], hue='status', palette='Dark2') 
+plt.savefig('Relationship')
+plt.show()
+
